@@ -32,8 +32,8 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 
     actionTimeout: 0,
-    baseURL: "http://localhost:3000",
-    trace: "on-first-retry",
+    baseURL: process.env.CI ? process.env.PLAYWRIGHT_BASE_URL : 'http://localhost:3001',
+    trace: 'retain-on-failure',
     screenshot: 'on',
     // if true then the browser will be launched in headless mode. Defaults to true unless the devtools option is true.
     headless: true,
@@ -84,6 +84,6 @@ export default defineConfig({
   // },
   webServer: {
     command: "npm run dev",
-    port: 3000,
+    port: 3001,
   },
 });
